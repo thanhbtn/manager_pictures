@@ -1,0 +1,32 @@
+<% content_for :css do %>
+	<%= stylesheet_link_tag "pagination" %>
+<% end %>
+<div class="row">
+	<div class="pull-right"><%= show_btn_edit_delete %></div>
+	<p class="text-center">
+		<b>
+			<%=@pictuers.first.album.title%>
+		</b>
+	</p>
+	<p>
+		<%=@pictuers.first.album.description%>
+	</p>
+</div>
+<div class="row">
+	<% @pictuers.each do |p| %>
+	  <div class="col-sm-6 col-md-4">
+	    <div class="thumbnail">
+	    	<%= link_to pictuer_path(p) do %>
+	     		<%= image_tag p.image.url(:medium) %>
+	     	<% end %>
+	      <div class="caption">
+	        <h4><%=p.title%></h4>
+	        <span><%=p.description%></span>
+	      </div>
+	    </div>
+	  </div>
+  <% end %>
+</div>
+<div class="flickr_pagination">
+	<%= will_paginate @pictuers %>
+</div>
